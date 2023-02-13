@@ -1,0 +1,45 @@
+# Logs
+LotoFontEnd/logs
+LotoFontEnd/*.log
+LotoFontEnd/npm-debug.log*
+LotoFontEnd/yarn-debug.log*
+LotoFontEnd/yarn-error.log*
+LotoFontEnd/pnpm-debug.log*
+LotoFontEnd/lerna-debug.log*
+LotoFontEnd/
+LotoFontEnd/node_modules
+LotoFontEnd/dist
+LotoFontEnd/dist-ssr
+LotoFontEnd/*.local
+LotoFontEnd/
+LotoFontEnd/# Editor directories and files
+LotoFontEnd/.vscode/*
+LotoFontEnd/!.vscode/extensions.json
+LotoFontEnd/.idea
+LotoFontEnd/.DS_Store
+LotoFontEnd/*.suo
+LotoFontEnd/*.ntvs*
+LotoFontEnd/*.njsproj
+LotoFontEnd/*.sln
+LotoFontEnd/*.sw?
+
+
+# BackEnd
+LotoBackEnd/node_modules
+LotoBackEnd/public/build
+LotoBackEnd/public/hot
+LotoBackEnd/public/storage
+LotoBackEnd/storage/*.key
+LotoBackEnd/vendor
+LotoBackEnd/.env
+LotoBackEnd/.env.backup
+LotoBackEnd/.env.production
+LotoBackEnd/.phpunit.result.cache
+LotoBackEnd/Homestead.json
+LotoBackEnd/Homestead.yaml
+LotoBackEnd/auth.json
+LotoBackEnd/npm-debug.log
+LotoBackEnd/yarn-error.log
+LotoBackEnd/.fleet
+LotoBackEnd/.idea
+LotoBackEnd/.vscode
