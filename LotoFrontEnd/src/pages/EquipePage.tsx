@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTextHeight, faImage } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,6 +11,7 @@ Yup.setLocale(pt);
 import Layout from "../components/Layout";
 import { api } from "../services/api";
 import TableEquipe from "../components/TableEquipe";
+import { toast } from 'react-toastify';
 
 
 const SignupSchema = Yup.object().shape({
@@ -21,19 +22,39 @@ const SignupSchema = Yup.object().shape({
 const initialValues = { team: '', photo: '' } as any
 
 
-
-
-
 export default function EquipePage() {
 
-    const onSubmitFormikEquipe = ({team,photo}, actions) => {
-        console.log("ok")
+    const [teams, setTeams] = useState([]);
+
+    const onSubmitFormikEquipe = ({ team, photo }, actions) => {
         api.post("/team/store", { team, photo }).then(response => {
-            console.log(response)
+
+            toast.success("Cadastrado com sucesso!", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+
+            actions.resetForm()
+            teamsLoadIndex()
         })
+            .catch(erro => {
+                toast.error("Ops! aconteceu algo de errado!", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            })
 
-        actions.resetForm()
 
+    }
+
+    useEffect(() => {
+        teamsLoadIndex()
+
+    }, [])
+
+    const teamsLoadIndex = () => {
+        api.get("/team/index").then(response => {
+            setTeams(response.data)
+
+        })
     }
 
 
@@ -69,7 +90,7 @@ export default function EquipePage() {
                 </Formik>
             </div>
             {/* VIEW EQUIPE */}
-            <TableEquipe />
+            <TableEquipe teams={teams} />
         </Layout>
     )
 }

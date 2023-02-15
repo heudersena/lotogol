@@ -37,7 +37,7 @@ export default function Layout({ children }) {
             </div>
 
             {/* Conteindo principal */}
-            <div className="flex-1 p-4 md:p-10">
+            <div className="flex-1 p-4 md:p-10 overflow-x-auto">
                 <div className="flex items-center justify-between md:hidden">
                     <button id="sidebar-toggle" className="text-gray-500 focus:outline-none">
                         <i className="fas fa-bars fa-lg"></i>
