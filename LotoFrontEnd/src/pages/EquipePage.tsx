@@ -25,6 +25,7 @@ const initialValues = { team: '', photo: '' } as any
 export default function EquipePage() {
 
     const [teams, setTeams] = useState([]);
+    const [loadingTeam, setLoadingTeam] = useState(true);
 
     const onSubmitFormikEquipe = ({ team, photo }, actions) => {
         api.post("/team/store", { team, photo }).then(response => {
@@ -54,6 +55,8 @@ export default function EquipePage() {
         api.get("/team/index").then(response => {
             setTeams(response.data)
 
+        }).finally(() => {
+            setLoadingTeam(false)
         })
     }
 
@@ -82,7 +85,7 @@ export default function EquipePage() {
                             </span>
                             <Field className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Link da imagem do time" type="text" name="photo" />
                         </label>
-                        <ErrorMessage className="text-red-500" component="span" name="photo" />
+                        <ErrorMessage render={() => <>Este campo é obrigatório!</>} className="text-red-500" component="span" name="photo" />
 
                         <div className="mt-4"></div>
                         <button type="submit" className="bg-green-500 py-1 px-2 rounded-sm uppercase font-semibold">cadastrar</button>
@@ -90,7 +93,7 @@ export default function EquipePage() {
                 </Formik>
             </div>
             {/* VIEW EQUIPE */}
-            <TableEquipe teams={teams} />
+            <TableEquipe teams={teams} loadingTeam={loadingTeam} />
         </Layout>
     )
 }
